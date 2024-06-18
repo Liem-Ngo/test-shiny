@@ -11,7 +11,6 @@ If you want to display an editor panel with along with the running application, 
 ```{shinylive-python}
 #| standalone: true
 #| viewerHeight: 400
-
 import jinja2
 
 from shiny import App, ui, render
@@ -73,51 +72,46 @@ parameter_mapping = {
 
 # Define creative principles mapping and replace <br> with a space
 creative_principles = {
-    1: "Thiết Kế/Khả Năng/Phương Tiện (Design Spec/ Capability/Means)",
-    2: "Chi Phí Thiết Kế (Design Cost)",
-    3: "Thời Gian Thiết Kế (Design Time)",
-    4: "Rủi Ro Thiết Kế (Design Risk)",
-    5: "Giao Diện Thiết Kế (Design Interfaces)",
-    6: "Quy Cách Sản Xuất/Khả Năng/Phương Tiện (Production Spec/Capablity/Means)",
-    7: "Chi Phí Sản Xuất (Production Cost)",
-    8: "Thời Gian Sản Xuất (Production Time)",
-    9: "Rủi Ro Sản Xuất (Production Risk)",
-    10: "Giao Diện Sản Xuất (Production Interfaces)",
-    11: "Thông Số/Khả Năng/Phương Tiện Cung Cấp (Supply Spec/Capability/Means)",
-    12: "Chi Phí Cung Ứng (Supply Cost)",
-    13: "Thời Gian Cung Ứng (Supply Time)",
-    14: "Rủi Ro Nguồn Cung (Supply Risk)",
-    15: "Giao Diện Cung Ứng (Supply Interfaces)",
-    16: "Thông Số Hỗ Trợ/Khả Năng/Phương Tiện (Support Spec/ Capability/Means)",
-    17: "Chi Phí Hỗ Trợ (Support Cost)",
-    18: "Thời Gian Hỗ Trợ (Support Time)",
-    19: "Rủi Ro Hỗ Trợ (Support Risk)",
-    20: "Giao Diện Hỗ Trợ (Support Interfaces)",
-    21: "Doanh Thu Khách Hàng (Customer Revenue)",
-    22: "Nhu Cầu Thị Trường (Market Demand)",
-    23: "Phản Hồi Của Khách Hàng (Customer Feedback)",
-    24: "Lòng Trung Thành Của Khách Hàng (Customer Loyalty)",
-    25: "Lượng Thông Tin (Amount Of Information)",
-    26: "Lưu Lượng Truyền Thông (Communication Flow)",
-    27: "Tính Tiện Lợi (Convenience)",
-    28: "Khả Năng Thích Ứng/Tính Linh Hoạt (Adaptability/ Versatility)",
-    29: "Độ Phức Tạp Của Hệ Thống (System Compexity)",
-    30: "Độ Phức Tạp Kiểm Soát (Control Complexity)",
-    31: "Áp Lực /Stress (Tension/Stress)",
-    32: "Tính Ổn Định/Khả Năng Phục Hồi (Stability/Resilience)",
-    33: "Tính Tự Chủ (Autonomy)",
-    34: "Sự Gắn Kết (Belonging)",
-    35: "Năng Lực Cạnh Tranh (Competence)",
-    36: "Cảm Giác Về Sự Tiến Bộ (Sense Of Progress)",
-    37: "Yếu Tố Vô Hình Tích Cực (Positive Intangibles)",
-    38: "Yếu Tố Vô Hình Tiêu Cực (Negative Intangibles)",
-    39: "Tin Tưởng (Trust)",
-    40: "Sự Cam Kết (Engagement)",
-    41: "Ý Nghĩa (Meaning)",
-    42: "Khả Năng Đo Lường (Ability To Measure)",
-    43: "Độ Chính Xác Của Phép Đo (Measurement Accuracy)",
-    44: "Yếu Tố Có Hại Ảnh Hưởng Đến Hệ Thống (Harmful Factors Affecting System)",
-    45: "Yếu Tố Có Hại Do Hệ Thống Tạo Ra (System Generated Harmful Factors)"
+    1: "Nguyên tắc phân nhỏ (Segmentation)",
+    2: "Nguyên tắc “tách khỏi” (Taking out)",
+    3: "Nguyên tắc phẩm chất cục bộ (Local quality)",
+    4: "Nguyên tắc phản đối xứng (Asymmetry)",
+    5: "Nguyên tắc kết hợp (Merging)",
+    6: "Nguyên tắc vạn năng (Universality)",
+    7: "Nguyên tắc “chứa trong” (Nested Doll)",
+    8: "Nguyên tắc phản trọng lượng (Anti-Weight)",
+    9: "Nguyên tắc gây ứng suất sơ bộ (Preliminary Anti-Action)",
+    10: "Nguyên tắc thực hiện sơ bộ (Preliminary Action)",
+    11: "Nguyên tắc dự phòng (Beforehand Cushioning)",
+    12: "Nguyên tắc đẳng thế (Equipotentiality)",
+    13: "Nguyên tắc đảo ngược (The Other Way Round)",
+    14: "Nguyên tắc cầu (tròn) hóa (Spheroidality - Curvature)",
+    15: "Nguyên tắc linh động (Dynamics)",
+    16: "Nguyên tắc giải “thiếu” hoặc “thừa” (Partial or Excessive Actions)",
+    17: "Nguyên tắc chuyển sang chiều khác (Another Dimension)",
+    18: "Nguyên tắc sử dụng các dao động cơ học (Mechanical vibration)",
+    19: "Nguyên tắc tác động theo chu kỳ (Periodic Action)",
+    20: "Nguyên tắc liên tục tác động có ích (Continuity of Useful Action)",
+    21: "Nguyên tắc “vượt nhanh” (Skipping)",
+    22: "Nguyên tắc biến hại thành lợi (\"Blessing in Disguise\" or \"Turn Lemons into Lemonade\")",
+    23: "Nguyên tắc quan hệ phản hồi (Feedback)",
+    24: "Nguyên tắc sử dụng trung gian (Intermediary)",
+    25: "Nguyên tắc tự phục vụ (Self-service)",
+    26: "Nguyên tắc sao chép (Copying)",
+    27: "Nguyên tắc “rẻ” thay cho “đắt” (Cheap Short-Living Objects)",
+    28: "Thay thế sơ đồ cơ học (Mechanics Substitution)",
+    29: "Sử dụng các kết cấu khí và lỏng (Pneumatics and Hydraulics)",
+    30: "Sử dụng vỏ dẻo và màng mỏng (Flexible Shells and Thin Films)",
+    31: "Sử dụng các vật liệu nhiều lỗ (Porous Materials)",
+    32: "Nguyên tắc thay đổi màu sắc (Color Changes)",
+    33: "Nguyên tắc đồng nhất (Homogeneity)",
+    34: "Nguyên tắc phân hủy hoặc tái sinh các phần (Discarding and Recovering)",
+    35: "Thay đổi các thông số hóa lý của đối tượng (Parameter Changes)",
+    36: "Sử dụng chuyển pha (Phase Transitions)",
+    37: "Sử dụng sự nở nhiệt (Thermal Expansion)",
+    38: "Sử dụng các chất oxy hóa mạnh (Strong Oxidants or Boosted Interactions)",
+    39: "Thay đổi độ trơ (Inert Atmosphere)",
+    40: "Sử dụng các vật liệu hợp thành (Composite Structures)"
 }
 
 # Define the UI components
@@ -152,26 +146,34 @@ app_ui = ui.page_fluid(
 def server(input: Inputs, output: Outputs, session: Session):
     @reactive.Calc
     def read_file():
-        return pd.read_csv(file_path, delimiter=';', index_col=0)
+        try:
+            df = pd.read_csv(file_path, delimiter=';', index_col=0)
+            return df
+        except Exception as e:
+            return pd.DataFrame({"Error": [f"Could not load the file: {str(e)}"]})
 
     @reactive.Calc
     def selected_value_calc():
         df_matrix = read_file()
-        if df_matrix.empty:
-            return pd.DataFrame({"Error": ["The data file could not be loaded."]})
+        if "Error" in df_matrix.columns:
+            return df_matrix
         
         if input.submitbutton() > 0:
             row_select = input.row_select()
             col_select = input.col_select()
-            row_idx = parameter_mapping[row_select] - 1  # Adjust for 0-based indexing
+            row_idx = parameter_mapping[row_select] - 1 # Adjust for 0-based indexing
             col_idx = parameter_mapping[col_select] - 1  # Adjust for 0-based indexing
-            value = df_matrix.iloc[row_idx, col_idx]
-            selected_values = [int(val) for val in str(value).split(',')]
-            result = pd.DataFrame({
-                "creative principle": selected_values,
-                "name": [creative_principles[val] for val in selected_values]
-            })
-            return result
+            try:
+                value = df_matrix.iloc[row_idx, col_idx]
+                selected_values = [int(val) for val in str(value).split(',')]
+                result = pd.DataFrame({
+                    "creative principle": selected_values,
+                    "name": [creative_principles[val] for val in selected_values]
+                })
+                return result
+            except Exception as e:
+                return pd.DataFrame({"Error": [f"Error processing selection: {str(e)}"]})
+        
         return pd.DataFrame(columns=["creative principle", "name"])
 
     @output
