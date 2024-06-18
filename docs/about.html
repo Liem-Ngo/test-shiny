@@ -284,7 +284,7 @@ def server(input: Inputs, output: Outputs, session: Session):
     @reactive.Calc
     def read_file():
         try:
-            df = pd.read_csv(file_path, delimiter=';', index_col=0)
+            df = pd.read_csv(file_path, delimiter=';')
             return df
         except Exception as e:
             return pd.DataFrame({"Error": [f"Could not load the file: {str(e)}"]})
