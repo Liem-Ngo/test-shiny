@@ -10,7 +10,7 @@ If you want to display an editor panel with along with the running application, 
 
 ```{shinylive-python}
 #| standalone: true
-#| viewerHeight: 500
+#| viewerHeight: 600
 from shiny import App, ui, render
 import pandas as pd
 from pyodide.http import open_url
