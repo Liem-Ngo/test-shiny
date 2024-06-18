@@ -10,66 +10,65 @@ If you want to display an editor panel with along with the running application, 
 
 ```{shinylive-python}
 #| standalone: true
-#| viewerHeight: 400
-import jinja2
-
+#| viewerHeight: 500
 from shiny import App, ui, render
 import pandas as pd
 from pyodide.http import open_url
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
 # Define the directory and file path
-URL="https://raw.githubusercontent.com/Liem-Ngo/test-shiny/1286303b19ea5fef14d67af71082e2c6f1ef2fb5/triz_45.csv"
+URL="https://raw.githubusercontent.com/Liem-Ngo/test-shiny/main/triz_45_1.csv"
 file_path = open_url(URL)
 
 # Define parameter mapping for 45x45 matrix
 parameter_mapping = {
-    "Thiết Kế/Khả Năng/Phương Tiện (Design Spec/ Capability/Means)": 1,
-    "Chi Phí Thiết Kế (Design Cost)": 2,
-    "Thời Gian Thiết Kế (Design Time)": 3,
-    "Rủi Ro Thiết Kế (Design Risk)": 4,
-    "Giao Diện Thiết Kế (Design Interfaces)": 5,
-    "Quy Cách Sản Xuất/Khả Năng/Phương Tiện (Production Spec/Capablity/Means)": 6,
-    "Chi Phí Sản Xuất (Production Cost)": 7,
-    "Thời Gian Sản Xuất (Production Time)": 8,
-    "Rủi Ro Sản Xuất (Production Risk)": 9,
-    "Giao Diện Sản Xuất (Production Interfaces)": 10,
-    "Thông Số/Khả Năng/Phương Tiện Cung Cấp (Supply Spec/Capability/Means)": 11,
-    "Chi Phí Cung Ứng (Supply Cost)": 12,
-    "Thời Gian Cung Ứng (Supply Time)": 13,
-    "Rủi Ro Nguồn Cung (Supply Risk)": 14,
-    "Giao Diện Cung Ứng (Supply Interfaces)": 15,
-    "Thông Số Hỗ Trợ/Khả Năng/Phương Tiện (Support Spec/ Capability/Means)": 16,
-    "Chi Phí Hỗ Trợ (Support Cost)": 17,
-    "Thời Gian Hỗ Trợ (Support Time)": 18,
-    "Rủi Ro Hỗ Trợ (Support Risk)": 19,
-    "Giao Diện Hỗ Trợ (Support Interfaces)": 20,
-    "Doanh Thu Khách Hàng (Customer Revenue)": 21,
-    "Nhu Cầu Thị Trường (Market Demand)": 22,
-    "Phản Hồi Của Khách Hàng (Customer Feedback)": 23,
-    "Lòng Trung Thành Của Khách Hàng (Customer Loyalty)": 24,
-    "Lượng Thông Tin (Amount Of Information)": 25,
-    "Lưu Lượng Truyền Thông (Communication Flow)": 26,
-    "Tính Tiện Lợi (Convenience)": 27,
-    "Khả Năng Thích Ứng/Tính Linh Hoạt (Adaptability/ Versatility)": 28,
-    "Độ Phức Tạp Của Hệ Thống (System Compexity)": 29,
-    "Độ Phức Tạp Kiểm Soát (Control Complexity)": 30,
-    "Áp Lực /Stress (Tension/Stress)": 31,
-    "Tính Ổn Định/Khả Năng Phục Hồi (Stability/Resilience)": 32,
-    "Tính Tự Chủ (Autonomy)": 33,
-    "Sự Gắn Kết (Belonging)": 34,
-    "Năng Lực Cạnh Tranh (Competence)": 35,
-    "Cảm Giác Về Sự Tiến Bộ (Sense Of Progress)": 36,
-    "Yếu Tố Vô Hình Tích Cực (Positive Intangibles)": 37,
-    "Yếu Tố Vô Hình Tiêu Cực (Negative Intangibles)": 38,
-    "Tin Tưởng (Trust)": 39,
-    "Sự Cam Kết (Engagement)": 40,
-    "Ý Nghĩa (Meaning)": 41,
-    "Khả Năng Đo Lường (Ability To Measure)": 42,
-    "Độ Chính Xác Của Phép Đo (Measurement Accuracy)": 43,
-    "Yếu Tố Có Hại Ảnh Hưởng Đến Hệ Thống (Harmful Factors Affecting System)": 44,
-    "Yếu Tố Có Hại Do Hệ Thống Tạo Ra (System Generated Harmful Factors)": 45
+    "1. Thiết Kế/Khả Năng/Phương Tiện (Design Spec/ Capability/Means)": 1,
+    "2. Chi Phí Thiết Kế (Design Cost)": 2,
+    "3. Thời Gian Thiết Kế (Design Time)": 3,
+    "4. Rủi Ro Thiết Kế (Design Risk)": 4,
+    "5. Giao Diện Thiết Kế (Design Interfaces)": 5,
+    "6. Quy Cách Sản Xuất/Khả Năng/Phương Tiện (Production Spec/Capability/Means)": 6,
+    "7. Chi Phí Sản Xuất (Production Cost)": 7,
+    "8. Thời Gian Sản Xuất (Production Time)": 8,
+    "9. Rủi Ro Sản Xuất (Production Risk)": 9,
+    "10. Giao Diện Sản Xuất (Production Interfaces)": 10,
+    "11. Thông Số/Khả Năng/Phương Tiện Cung Cấp (Supply Spec/Capability/Means)": 11,
+    "12. Chi Phí Cung Ứng (Supply Cost)": 12,
+    "13. Thời Gian Cung Ứng (Supply Time)": 13,
+    "14. Rủi Ro Nguồn Cung (Supply Risk)": 14,
+    "15. Giao Diện Cung Ứng (Supply Interfaces)": 15,
+    "16. Thông Số Hỗ Trợ/Khả Năng/Phương Tiện (Support Spec/ Capability/Means)": 16,
+    "17. Chi Phí Hỗ Trợ (Support Cost)": 17,
+    "18. Thời Gian Hỗ Trợ (Support Time)": 18,
+    "19. Rủi Ro Hỗ Trợ (Support Risk)": 19,
+    "20. Giao Diện Hỗ Trợ (Support Interfaces)": 20,
+    "21. Doanh Thu Khách Hàng (Customer Revenue)": 21,
+    "22. Nhu Cầu Thị Trường (Market Demand)": 22,
+    "23. Phản Hồi Của Khách Hàng (Customer Feedback)": 23,
+    "24. Lòng Trung Thành Của Khách Hàng (Customer Loyalty)": 24,
+    "25. Lượng Thông Tin (Amount Of Information)": 25,
+    "26. Lưu Lượng Truyền Thông (Communication Flow)": 26,
+    "27. Tính Tiện Lợi (Convenience)": 27,
+    "28. Khả Năng Thích Ứng/Tính Linh Hoạt (Adaptability/ Versatility)": 28,
+    "29. Độ Phức Tạp Của Hệ Thống (System Complexity)": 29,
+    "30. Độ Phức Tạp Kiểm Soát (Control Complexity)": 30,
+    "31. Áp Lực /Stress (Tension/Stress)": 31,
+    "32. Tính Ổn Định/Khả Năng Phục Hồi (Stability/Resilience)": 32,
+    "33. Tính Tự Chủ (Autonomy)": 33,
+    "34. Sự Gắn Kết (Belonging)": 34,
+    "35. Năng Lực Cạnh Tranh (Competence)": 35,
+    "36. Cảm Giác Về Sự Tiến Bộ (Sense Of Progress)": 36,
+    "37. Yếu Tố Vô Hình Tích Cực (Positive Intangibles)": 37,
+    "38. Yếu Tố Vô Hình Tiêu Cực (Negative Intangibles)": 38,
+    "39. Tin Tưởng (Trust)": 39,
+    "40. Sự Cam Kết (Engagement)": 40,
+    "41. Ý Nghĩa (Meaning)": 41,
+    "42. Khả Năng Đo Lường (Ability To Measure)": 42,
+    "43. Độ Chính Xác Của Phép Đo (Measurement Accuracy)": 43,
+    "44. Yếu Tố Có Hại Ảnh Hưởng Đến Hệ Thống (Harmful Factors Affecting System)": 44,
+    "45. Yếu Tố Có Hại Do Hệ Thống Tạo Ra (System Generated Harmful Factors)": 45
 }
+
 
 # Define creative principles mapping and replace <br> with a space
 creative_principles = {
@@ -119,29 +118,29 @@ creative_principles = {
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
-            ui.h3("45x45 Matrix Value Selector"),
+            ui.h3("Matrix 45"),
             ui.input_select(
-                "row_select",
-                "Select Row:",
+                "col_select",
+                "Tốt lên:",
                 list(parameter_mapping.keys()),
                 width="100%"
             ),
             ui.input_select(
-                "col_select",
-                "Select Column:",
+                "row_select",
+                "Xấu đi:",
                 list(parameter_mapping.keys()),
                 width="100%"
             ),
             ui.input_action_button("submitbutton", "Submit", class_="btn btn-primary", width="100%"),
         ),
         ui.panel_main(
-            ui.h3("Selected Values Table"),
+            ui.h3("__________NGUYÊN TẮC SÁNG TẠO__________ "),
             ui.output_table("selected_table", class_="table table-sm table-striped"),
-            ui.HTML("<style> .table { font-size: 12px; text-align: left; } </style>"),
+            ui.HTML("<style> .table { font-size: 15px; text-align: left; } </style>"),
         ),
-        style="font-size: 18px; padding: 20px;"
+        style="font-size: 15px; padding: 0px;"
     ),
-    style="font-size: 18px; padding: 20px;"
+    style="font-size: 15px; padding: 0px;"
 )
 
 def server(input: Inputs, output: Outputs, session: Session):
@@ -168,14 +167,14 @@ def server(input: Inputs, output: Outputs, session: Session):
                 value = df_matrix.iloc[row_idx, col_idx]
                 selected_values = [int(val) for val in str(value).split(',')]
                 result = pd.DataFrame({
-                    "creative principle": selected_values,
-                    "name": [creative_principles[val] for val in selected_values]
+                    "Principles": selected_values,
+                    " ": [creative_principles[val] for val in selected_values]
                 })
                 return result
             except Exception as e:
                 return pd.DataFrame({"Error": [f"Error processing selection: {str(e)}"]})
         
-        return pd.DataFrame(columns=["creative principle", "name"])
+        return pd.DataFrame(columns=["Principles", " "])
 
     @output
     @render.table
