@@ -155,7 +155,7 @@ from pyodide.http import open_url
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
 # Define the directory and file path
-file_path = open_url("https://raw.githubusercontent.com/Liem-Ngo/test-shiny/main/triz_39.csv")
+file_path = open_url("https://raw.githubusercontent.com/Liem-Ngo/test-shiny/main/triz_39_1.csv")
 
 # Define parameter mapping
 parameter_mapping = {
@@ -250,13 +250,13 @@ app_ui = ui.page_fluid(
         ui.panel_sidebar(
             ui.h3("Matrix 39"),
             ui.input_select(
-                "row_select",
+                "col_select",
                 "Tốt lên:",
                 list(parameter_mapping.keys()),
                 width="100%"
             ),
             ui.input_select(
-                "col_select",
+                "row_select",
                 "Xấu đi:",
                 list(parameter_mapping.keys()),
                 width="100%"
