@@ -99,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Shinylive in Quarto example</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -276,7 +276,7 @@ app_ui = ui.page_fluid(
 def server(input: Inputs, output: Outputs, session: Session):
     @reactive.Calc
     def read_file():
-        return pd.read_csv(file_path, delimiter=';', index_col=0)
+        return pd.read_csv(file_path, delimiter=';')
 
     @reactive.Calc
     def selected_value_calc():
