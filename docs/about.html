@@ -298,7 +298,7 @@ def server(input: Inputs, output: Outputs, session: Session):
         if input.submitbutton() &gt; 0:
             row_select = input.row_select()
             col_select = input.col_select()
-            row_idx = parameter_mapping[row_select] - 2 # Adjust for 0-based indexing
+            row_idx = parameter_mapping[row_select] - 1 # Adjust for 0-based indexing
             col_idx = parameter_mapping[col_select] - 1  # Adjust for 0-based indexing
             try:
                 value = df_matrix.iloc[row_idx, col_idx]
