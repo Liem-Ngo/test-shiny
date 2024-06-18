@@ -19,7 +19,8 @@ from pyodide.http import open_url
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
 # Define the directory and file path
-file_path = open_url("https://raw.githubusercontent.com/Liem-Ngo/test-shiny/main/triz_45.csv")
+URL="https://raw.githubusercontent.com/Liem-Ngo/test-shiny/1286303b19ea5fef14d67af71082e2c6f1ef2fb5/triz_45.csv"
+file_path = open_url(URL)
 
 # Define parameter mapping for 45x45 matrix
 parameter_mapping = {
