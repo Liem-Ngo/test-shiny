@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link" href="./index.html">
  <span class="menu-text">TRIZ-39</span></a>
   </li>  
   <li class="nav-item">
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">TRIZ-45</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./50.html">
+    <a class="nav-link active" href="./50.html" aria-current="page">
  <span class="menu-text">TRIZ-50</span></a>
   </li>  
 </ul>
@@ -140,59 +140,70 @@ ul.task-list li input[type="checkbox"] {
 <p>If you want to display an editor panel with along with the running application, use <code>#| components: [editor, viewer]</code>. Users will be able to use the editor to modify the code and re-run the application.</p>
 <pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| viewerHeight: 600
-
 from shiny import App, ui, render
 import pandas as pd
 from pyodide.http import open_url
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
 # Define the directory and file path
-file_path = open_url("https://raw.githubusercontent.com/Liem-Ngo/test-shiny/main/triz_39_1.csv")
+URL = "https://raw.githubusercontent.com/Liem-Ngo/test-shiny/main/triz_50.csv"
+file_path = open_url(URL)
 
-# Define parameter mapping
+# Define parameter mapping for 50x50 matrix
 parameter_mapping = {
-    "1. Trọng lượng đối tượng chuyển động": 1,
-    "2. Trọng lượng đối tượng bất động": 2,
-    "3. Độ dài đối tượng chuyển động": 3,
-    "4. Độ dài đối tượng bất động": 4,
-    "5. Diện tích đối tượng chuyển động": 5,
-    "6. Diện tích đối tượng bất động": 6,
-    "7. Thể tích đối tượng chuyển động": 7,
-    "8. Thể tích đối tượng bất động": 8,
-    "9. Vận tốc": 9,
-    "10. Lực": 10,
-    "11. Ứng suất, áp suất": 11,
-    "12. Hình dạng": 12,
-    "13. Tính ổn định của thành phần đối tượng": 13,
-    "14. Độ bền": 14,
-    "15. Thời hạn hoạt động của đối tượng chuyển động": 15,
-    "16. Thời hạn hoạt động của đối tượng bất động": 16,
-    "17. Nhiệt độ": 17,
-    "18. Độ chiếu sáng (độ rọi)": 18,
-    "19. Năng lượng tiêu hao bởi đối tượng chuyển động": 19,
-    "20. Năng lượng tiêu hao bởi đối tượng bất động": 20,
-    "21. Công suất": 21,
-    "22. Năng lượng mất mát": 22,
-    "23. Chất thể mất mát": 23,
-    "24. Thông tin mất mát": 24,
-    "25. Thời gian mất mát": 25,
-    "26. Lượng chất thể": 26,
-    "27. Độ tin cậy": 27,
-    "28. Độ chính xác trong đo lường": 28,
-    "29. Độ chính xác trong chế tạo": 29,
-    "30. Các nhân tố có hại từ bên ngoài tác động lên đối tượng": 30,
-    "31. Các nhân tố có hại sinh ra bởi chính đối tượng": 31,
-    "32. Tiện lợi trong chế tạo": 32,
-    "33. Tiện lợi trong sử dụng, vận hành": 33,
-    "34. Tiện lợi trong sửa chữa": 34,
-    "35. Độ thích nghi, tính phổ dụng (vạn năng)": 35,
-    "36. Độ phức tạp của thiết bị": 36,
-    "37. Độ phức tạp trong kiểm tra và đo lường": 37,
-    "38. Mức độ tự động hóa": 38,
-    "39. Năng suất": 39
+    "1. Trọng Lượng Của Đối Tượng Chuyển Động (Weight of Moving Object)": 1,
+    "2. Trọng Lượng Của Đối Tượng Bất Động (Weight of Stationary Object)": 2,
+    "3. Độ Dài/ Góc Của Đối Tượng Chuyển Động (Length/Angle of Moving Object)": 3,
+    "4. Độ Dài/ Góc Của Đối Tượng Bất Động (Length/Angle of Stationary Object)": 4,
+    "5. Diện Tích Của Đối Tượng Chuyển Động (Area of Moving Object)": 5,
+    "6. Diện Tích Của Đối Tượng Bất Động (Area of Stationary Object)": 6,
+    "7. Thể Tích Đối Tượng Chuyển Động (Volume of Moving Object)": 7,
+    "8. Thể Tích Đối Tượng Bất Động (Volume of Stationary Object)": 8,
+    "9. Hình Dạng (Shape)": 9,
+    "10. Lượng Chất Thể (Amount of Substance)": 10,
+    "11. Lượng Thông Tin (Amount of Information)": 11,
+    "12. Thời Gian Hoạt Động Của Đối Tượng Chuyển Động (Duration of Action of Moving Object)": 12,
+    "13. Thời Gian Hoạt Động Của Đối Tượng Bất Động (Duration of Action of Stationary Object)": 13,
+    "14. Tốc Độ (Speed)": 14,
+    "15. Lực/ Momen Xoắn (Force/Torque)": 15,
+    "16. Năng Lượng Tiêu Hao Bởi Đối Tượng Chuyển Động (Energy Used by Moving Object)": 16,
+    "17. Năng Lượng Tiêu Hao Bởi Đối Tượng Bất Động (Energy Used by Stationary Object)": 17,
+    "18. Công Suất (Power)": 18,
+    "19. Ứng Suất/ Áp Suất (Stress/Pressure)": 19,
+    "20. Độ Bền (Strength)": 20,
+    "21. Độ Ổn Định (Stability)": 21,
+    "22. Nhiệt Độ (Temperature)": 22,
+    "23. Độ Chiếu Sáng (Illumination Intensity)": 23,
+    "24. Hiệu Quả Chức Năng (Function Efficiency)": 24,
+    "25. Chất Thể Mất Mát (Loss of Substance)": 25,
+    "26. Thời Gian Mất Mát (Loss of Time)": 26,
+    "27. Năng Lượng Mất Mát (Loss of Energy)": 27,
+    "28. Thông Tin Mất Mát (Loss of Information)": 28,
+    "29. Độ Ồn/ Nhiễu (Noise)": 29,
+    "30. Phát Thải Độc Hại (Harmful Emissions)": 30,
+    "31. Những Nhân Tố Có Hại Sinh Ra Bởi Đối Tượng (Other Harmful Effects Generated by System)": 31,
+    "32. Độ Thích Nghi (Adaptability/ Versatility)": 32,
+    "33. Khả Năng Tương Thích (Compatibility/ Connectability)": 33,
+    "34. Tiện Lợi Trong Hoạt Động (Trainability/Operability/Controllability)": 34,
+    "35. Độ Tin Cậy (Reliability/ Robustness)": 35,
+    "36. Khả Năng Sửa Chữa (Repairability)": 36,
+    "37. Độ Bảo Mật (Security)": 37,
+    "38. Độ An Toàn (Safety/ Vulnerability)": 38,
+    "39. Tính Thẩm Mỹ (Aesthetics/Appearance)": 39,
+    "40. Những Hiệu Ứng Có Hại Tác Động Lên Đối Tượng (Other Harmful Effects Acting on System)": 40,
+    "41. Năng Lực Chế Tạo (Manufacturability)": 41,
+    "42. Độ Chính Xác Trong Chế Tạo (Manufacture Precision/Consistency)": 42,
+    "43. Mức Độ Tự Động Hóa (Automation)": 43,
+    "44. Năng Suất (Productivity)": 44,
+    "45. Độ Phức Tạp Của Đối Tượng (System Complexity)": 45,
+    "46. Độ Phức Tạp Trong Kiểm Soát (Control Complexity)": 46,
+    "47. Điều Vô Hình Tích Cực (Positive Intangible Factors)": 47,
+    "48. Điều Vô Hình Tiêu Cực (Negative Intangible Factors)": 48,
+    "49. Năng Lực Xác Định (Ability to Detect/Measure)": 49,
+    "50. Độ Chính Xác Trong Đo Lường (Measurement Precision)": 50
 }
 
-# Define creative principles mapping and replace &lt;br&gt; with a space
+# Define creative principles mapping
 creative_principles = {
     1: "Nguyên tắc phân nhỏ (Segmentation)",
     2: "Nguyên tắc “tách khỏi” (Taking out)",
@@ -240,7 +251,7 @@ creative_principles = {
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
-            ui.h3("Matrix 39"),
+            ui.h3("Matrix 50x50"),
             ui.input_select(
                 "col_select",
                 "Tốt lên:",
@@ -268,26 +279,34 @@ app_ui = ui.page_fluid(
 def server(input: Inputs, output: Outputs, session: Session):
     @reactive.Calc
     def read_file():
-        return pd.read_csv(file_path, delimiter=';')
+        try:
+            df = pd.read_csv(file_path, delimiter=';')
+            return df
+        except Exception as e:
+            return pd.DataFrame({"Error": [f"Could not load the file: {str(e)}"]})
 
     @reactive.Calc
     def selected_value_calc():
         df_matrix = read_file()
-        if df_matrix.empty:
-            return pd.DataFrame({"Error": ["The data file could not be loaded."]})
+        if "Error" in df_matrix.columns:
+            return df_matrix
         
         if input.submitbutton() &gt; 0:
             row_select = input.row_select()
             col_select = input.col_select()
             row_idx = parameter_mapping[row_select] - 1  # Adjust for 0-based indexing
             col_idx = parameter_mapping[col_select] - 1  # Adjust for 0-based indexing
-            value = df_matrix.iloc[row_idx, col_idx]
-            selected_values = [int(val) for val in str(value).split(',')]
-            result = pd.DataFrame({
-                "Principles": selected_values,
-                " ": [creative_principles[val] for val in selected_values]
-            })
-            return result
+            try:
+                value = df_matrix.iloc[row_idx, col_idx]
+                selected_values = [int(val) for val in str(value).split(',')]
+                result = pd.DataFrame({
+                    "Principles": selected_values,
+                    " ": [creative_principles[val] for val in selected_values]
+                })
+                return result
+            except Exception as e:
+                return pd.DataFrame({"Error": [f"Error processing selection: {str(e)}"]})
+        
         return pd.DataFrame(columns=["Principles", " "])
 
     @output
