@@ -7,9 +7,12 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - about.qmd
-
+        text: TRIZ-39
+      - href: about.qmd
+        text: TRIZ-45
+        
+        
+        
 format:
   html:
     theme: cosmo
