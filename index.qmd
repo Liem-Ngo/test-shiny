@@ -15,7 +15,6 @@ css: styles.css
 ### Bảng tra ma trận 39 thông số kỹ thuật
 
 
-
 ```{shinylive-python}
 #| standalone: true
 #| viewerHeight: 600
