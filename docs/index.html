@@ -39,6 +39,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.4.1/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.4.1/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.4.1/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,11 +112,6 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#bảng-tra-ma-trận-39-thông-số-kỹ-thuật" id="toc-bảng-tra-ma-trận-39-thông-số-kỹ-thuật" class="nav-link active" data-scroll-target="#bảng-tra-ma-trận-39-thông-số-kỹ-thuật">Bảng tra ma trận 39 thông số kỹ thuật</a></li>
-  <li><a href="#define-the-directory-and-file-path" id="toc-define-the-directory-and-file-path" class="nav-link" data-scroll-target="#define-the-directory-and-file-path">Define the directory and file path</a></li>
-  <li><a href="#define-parameter-mapping" id="toc-define-parameter-mapping" class="nav-link" data-scroll-target="#define-parameter-mapping">Define parameter mapping</a></li>
-  <li><a href="#define-creative-principles-mapping-and-replace-with-a-space" id="toc-define-creative-principles-mapping-and-replace-with-a-space" class="nav-link" data-scroll-target="#define-creative-principles-mapping-and-replace-with-a-space">Define creative principles mapping and replace <br> with a space</a></li>
-  <li><a href="#define-the-ui-components" id="toc-define-the-ui-components" class="nav-link" data-scroll-target="#define-the-ui-components">Define the UI components</a>
-  <ul class="collapse">
   <li><a href="#thông-số-kỹ-thuật" id="toc-thông-số-kỹ-thuật" class="nav-link" data-scroll-target="#thông-số-kỹ-thuật">39 Thông số kỹ thuật</a>
   <ul class="collapse">
   <li><a href="#trọng-lượng-của-vật-thể-di-chuyển" id="toc-trọng-lượng-của-vật-thể-di-chuyển" class="nav-link" data-scroll-target="#trọng-lượng-của-vật-thể-di-chuyển">1. <strong>Trọng lượng của vật thể di chuyển</strong></a></li>
@@ -154,7 +154,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#mức-độ-tự-động-hóa" id="toc-mức-độ-tự-động-hóa" class="nav-link" data-scroll-target="#mức-độ-tự-động-hóa">38. <strong>Mức độ tự động hóa</strong></a></li>
   <li><a href="#năng-suất" id="toc-năng-suất" class="nav-link" data-scroll-target="#năng-suất">39. <strong>Năng suất</strong></a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -180,55 +179,166 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="bảng-tra-ma-trận-39-thông-số-kỹ-thuật" class="level3">
 <h3 class="anchored" data-anchor-id="bảng-tra-ma-trận-39-thông-số-kỹ-thuật">Bảng tra ma trận 39 thông số kỹ thuật</h3>
-<p><code>{code fold=1}</code>shinylive-python #| standalone: true #| viewerHeight: 600</p>
-<p>from shiny import App, ui, render import pandas as pd from pyodide.http import open_url from shiny import App, Inputs, Outputs, Session, reactive, render, ui</p>
-</section>
-<section id="define-the-directory-and-file-path" class="level1">
-<h1>Define the directory and file path</h1>
-<p>file_path = open_url(“https://raw.githubusercontent.com/Liem-Ngo/test-shiny/main/triz_39_1.csv”)</p>
-</section>
-<section id="define-parameter-mapping" class="level1">
-<h1>Define parameter mapping</h1>
-<p>parameter_mapping = { “1. Trọng lượng đối tượng chuyển động”: 1, “2. Trọng lượng đối tượng bất động”: 2, “3. Độ dài đối tượng chuyển động”: 3, “4. Độ dài đối tượng bất động”: 4, “5. Diện tích đối tượng chuyển động”: 5, “6. Diện tích đối tượng bất động”: 6, “7. Thể tích đối tượng chuyển động”: 7, “8. Thể tích đối tượng bất động”: 8, “9. Vận tốc”: 9, “10. Lực”: 10, “11. Ứng suất, áp suất”: 11, “12. Hình dạng”: 12, “13. Tính ổn định của thành phần đối tượng”: 13, “14. Độ bền”: 14, “15. Thời hạn hoạt động của đối tượng chuyển động”: 15, “16. Thời hạn hoạt động của đối tượng bất động”: 16, “17. Nhiệt độ”: 17, “18. Độ chiếu sáng (độ rọi)”: 18, “19. Năng lượng tiêu hao bởi đối tượng chuyển động”: 19, “20. Năng lượng tiêu hao bởi đối tượng bất động”: 20, “21. Công suất”: 21, “22. Năng lượng mất mát”: 22, “23. Chất thể mất mát”: 23, “24. Thông tin mất mát”: 24, “25. Thời gian mất mát”: 25, “26. Lượng chất thể”: 26, “27. Độ tin cậy”: 27, “28. Độ chính xác trong đo lường”: 28, “29. Độ chính xác trong chế tạo”: 29, “30. Các nhân tố có hại từ bên ngoài tác động lên đối tượng”: 30, “31. Các nhân tố có hại sinh ra bởi chính đối tượng”: 31, “32. Tiện lợi trong chế tạo”: 32, “33. Tiện lợi trong sử dụng, vận hành”: 33, “34. Tiện lợi trong sửa chữa”: 34, “35. Độ thích nghi, tính phổ dụng (vạn năng)”: 35, “36. Độ phức tạp của thiết bị”: 36, “37. Độ phức tạp trong kiểm tra và đo lường”: 37, “38. Mức độ tự động hóa”: 38, “39. Năng suất”: 39 }</p>
-</section>
-<section id="define-creative-principles-mapping-and-replace-with-a-space" class="level1">
-<h1>Define creative principles mapping and replace <br> with a space</h1>
-<p>creative_principles = { 1: “Nguyên tắc phân nhỏ (Segmentation)”, 2: “Nguyên tắc “tách khỏi” (Taking out)“, 3:”Nguyên tắc phẩm chất cục bộ (Local quality)“, 4:”Nguyên tắc phản đối xứng (Asymmetry)“, 5:”Nguyên tắc kết hợp (Merging)“, 6:”Nguyên tắc vạn năng (Universality)“, 7:”Nguyên tắc “chứa trong” (Nested Doll)“, 8:”Nguyên tắc phản trọng lượng (Anti-Weight)“, 9:”Nguyên tắc gây ứng suất sơ bộ (Preliminary Anti-Action)“, 10:”Nguyên tắc thực hiện sơ bộ (Preliminary Action)“, 11:”Nguyên tắc dự phòng (Beforehand Cushioning)“, 12:”Nguyên tắc đẳng thế (Equipotentiality)“, 13:”Nguyên tắc đảo ngược (The Other Way Round)“, 14:”Nguyên tắc cầu (tròn) hóa (Spheroidality - Curvature)“, 15:”Nguyên tắc linh động (Dynamics)“, 16:”Nguyên tắc giải “thiếu” hoặc “thừa” (Partial or Excessive Actions)“, 17:”Nguyên tắc chuyển sang chiều khác (Another Dimension)“, 18:”Nguyên tắc sử dụng các dao động cơ học (Mechanical vibration)“, 19:”Nguyên tắc tác động theo chu kỳ (Periodic Action)“, 20:”Nguyên tắc liên tục tác động có ích (Continuity of Useful Action)“, 21:”Nguyên tắc “vượt nhanh” (Skipping)“, 22:”Nguyên tắc biến hại thành lợi ("Blessing in Disguise" or "Turn Lemons into Lemonade")“, 23:”Nguyên tắc quan hệ phản hồi (Feedback)“, 24:”Nguyên tắc sử dụng trung gian (Intermediary)“, 25:”Nguyên tắc tự phục vụ (Self-service)“, 26:”Nguyên tắc sao chép (Copying)“, 27:”Nguyên tắc “rẻ” thay cho “đắt” (Cheap Short-Living Objects)“, 28:”Thay thế sơ đồ cơ học (Mechanics Substitution)“, 29:”Sử dụng các kết cấu khí và lỏng (Pneumatics and Hydraulics)“, 30:”Sử dụng vỏ dẻo và màng mỏng (Flexible Shells and Thin Films)“, 31:”Sử dụng các vật liệu nhiều lỗ (Porous Materials)“, 32:”Nguyên tắc thay đổi màu sắc (Color Changes)“, 33:”Nguyên tắc đồng nhất (Homogeneity)“, 34:”Nguyên tắc phân hủy hoặc tái sinh các phần (Discarding and Recovering)“, 35:”Thay đổi các thông số hóa lý của đối tượng (Parameter Changes)“, 36:”Sử dụng chuyển pha (Phase Transitions)“, 37:”Sử dụng sự nở nhiệt (Thermal Expansion)“, 38:”Sử dụng các chất oxy hóa mạnh (Strong Oxidants or Boosted Interactions)“, 39:”Thay đổi độ trơ (Inert Atmosphere)“, 40:”Sử dụng các vật liệu hợp thành (Composite Structures)” }</p>
-</section>
-<section id="define-the-ui-components" class="level1">
-<h1>Define the UI components</h1>
-app_ui = ui.page_fluid( ui.layout_sidebar( ui.panel_sidebar( ui.h3(“Matrix 39”), ui.input_select( “col_select”, “Tốt lên:”, list(parameter_mapping.keys()), width=“100%” ), ui.input_select( “row_select”, “Xấu đi:”, list(parameter_mapping.keys()), width=“100%” ), ui.input_action_button(“submitbutton”, “Submit”, class_=“btn btn-primary”, width=“100%”), ), ui.panel_main( ui.h3(“__________NGUYÊN TẮC SÁNG TẠO__________”), ui.output_table(“selected_table”, class_=“table table-sm table-striped”), ui.HTML(“
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| viewerHeight: 600
 
-<style> .table { font-size: 15px; text-align: left; } </style>
-<p>“), ), style=”font-size: 15px; padding: 0px;” ), style=“font-size: 15px; padding: 0px;” )</p>
-<p>def server(input: Inputs, output: Outputs, session: Session): <span class="citation" data-cites="reactive.Calc">@reactive.Calc</span> def read_file(): return pd.read_csv(file_path, delimiter=‘;’)</p>
-<pre><code>@reactive.Calc
-def selected_value_calc():
-    df_matrix = read_file()
-    if df_matrix.empty:
-        return pd.DataFrame({"Error": ["The data file could not be loaded."]})
-    
-    if input.submitbutton() &gt; 0:
-        row_select = input.row_select()
-        col_select = input.col_select()
-        row_idx = parameter_mapping[row_select] - 1  # Adjust for 0-based indexing
-        col_idx = parameter_mapping[col_select] - 1  # Adjust for 0-based indexing
-        value = df_matrix.iloc[row_idx, col_idx]
-        selected_values = [int(val) for val in str(value).split(',')]
-        result = pd.DataFrame({
-            "Principles": selected_values,
-            " ": [creative_principles[val] for val in selected_values]
-        })
-        return result
-    return pd.DataFrame(columns=["Principles", " "])
+from shiny import App, ui, render
+import pandas as pd
+from pyodide.http import open_url
+from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
-@output
-@render.table
-def selected_table():
-    return selected_value_calc()</code></pre>
-<p>app = App(app_ui, server)</p>
-<pre><code>
+# Define the directory and file path
+file_path = open_url("https://raw.githubusercontent.com/Liem-Ngo/test-shiny/main/triz_39_1.csv")
+
+# Define parameter mapping
+parameter_mapping = {
+    "1. Trọng lượng đối tượng chuyển động": 1,
+    "2. Trọng lượng đối tượng bất động": 2,
+    "3. Độ dài đối tượng chuyển động": 3,
+    "4. Độ dài đối tượng bất động": 4,
+    "5. Diện tích đối tượng chuyển động": 5,
+    "6. Diện tích đối tượng bất động": 6,
+    "7. Thể tích đối tượng chuyển động": 7,
+    "8. Thể tích đối tượng bất động": 8,
+    "9. Vận tốc": 9,
+    "10. Lực": 10,
+    "11. Ứng suất, áp suất": 11,
+    "12. Hình dạng": 12,
+    "13. Tính ổn định của thành phần đối tượng": 13,
+    "14. Độ bền": 14,
+    "15. Thời hạn hoạt động của đối tượng chuyển động": 15,
+    "16. Thời hạn hoạt động của đối tượng bất động": 16,
+    "17. Nhiệt độ": 17,
+    "18. Độ chiếu sáng (độ rọi)": 18,
+    "19. Năng lượng tiêu hao bởi đối tượng chuyển động": 19,
+    "20. Năng lượng tiêu hao bởi đối tượng bất động": 20,
+    "21. Công suất": 21,
+    "22. Năng lượng mất mát": 22,
+    "23. Chất thể mất mát": 23,
+    "24. Thông tin mất mát": 24,
+    "25. Thời gian mất mát": 25,
+    "26. Lượng chất thể": 26,
+    "27. Độ tin cậy": 27,
+    "28. Độ chính xác trong đo lường": 28,
+    "29. Độ chính xác trong chế tạo": 29,
+    "30. Các nhân tố có hại từ bên ngoài tác động lên đối tượng": 30,
+    "31. Các nhân tố có hại sinh ra bởi chính đối tượng": 31,
+    "32. Tiện lợi trong chế tạo": 32,
+    "33. Tiện lợi trong sử dụng, vận hành": 33,
+    "34. Tiện lợi trong sửa chữa": 34,
+    "35. Độ thích nghi, tính phổ dụng (vạn năng)": 35,
+    "36. Độ phức tạp của thiết bị": 36,
+    "37. Độ phức tạp trong kiểm tra và đo lường": 37,
+    "38. Mức độ tự động hóa": 38,
+    "39. Năng suất": 39
+}
+
+# Define creative principles mapping and replace &lt;br&gt; with a space
+creative_principles = {
+    1: "Nguyên tắc phân nhỏ (Segmentation)",
+    2: "Nguyên tắc “tách khỏi” (Taking out)",
+    3: "Nguyên tắc phẩm chất cục bộ (Local quality)",
+    4: "Nguyên tắc phản đối xứng (Asymmetry)",
+    5: "Nguyên tắc kết hợp (Merging)",
+    6: "Nguyên tắc vạn năng (Universality)",
+    7: "Nguyên tắc “chứa trong” (Nested Doll)",
+    8: "Nguyên tắc phản trọng lượng (Anti-Weight)",
+    9: "Nguyên tắc gây ứng suất sơ bộ (Preliminary Anti-Action)",
+    10: "Nguyên tắc thực hiện sơ bộ (Preliminary Action)",
+    11: "Nguyên tắc dự phòng (Beforehand Cushioning)",
+    12: "Nguyên tắc đẳng thế (Equipotentiality)",
+    13: "Nguyên tắc đảo ngược (The Other Way Round)",
+    14: "Nguyên tắc cầu (tròn) hóa (Spheroidality - Curvature)",
+    15: "Nguyên tắc linh động (Dynamics)",
+    16: "Nguyên tắc giải “thiếu” hoặc “thừa” (Partial or Excessive Actions)",
+    17: "Nguyên tắc chuyển sang chiều khác (Another Dimension)",
+    18: "Nguyên tắc sử dụng các dao động cơ học (Mechanical vibration)",
+    19: "Nguyên tắc tác động theo chu kỳ (Periodic Action)",
+    20: "Nguyên tắc liên tục tác động có ích (Continuity of Useful Action)",
+    21: "Nguyên tắc “vượt nhanh” (Skipping)",
+    22: "Nguyên tắc biến hại thành lợi (\"Blessing in Disguise\" or \"Turn Lemons into Lemonade\")",
+    23: "Nguyên tắc quan hệ phản hồi (Feedback)",
+    24: "Nguyên tắc sử dụng trung gian (Intermediary)",
+    25: "Nguyên tắc tự phục vụ (Self-service)",
+    26: "Nguyên tắc sao chép (Copying)",
+    27: "Nguyên tắc “rẻ” thay cho “đắt” (Cheap Short-Living Objects)",
+    28: "Thay thế sơ đồ cơ học (Mechanics Substitution)",
+    29: "Sử dụng các kết cấu khí và lỏng (Pneumatics and Hydraulics)",
+    30: "Sử dụng vỏ dẻo và màng mỏng (Flexible Shells and Thin Films)",
+    31: "Sử dụng các vật liệu nhiều lỗ (Porous Materials)",
+    32: "Nguyên tắc thay đổi màu sắc (Color Changes)",
+    33: "Nguyên tắc đồng nhất (Homogeneity)",
+    34: "Nguyên tắc phân hủy hoặc tái sinh các phần (Discarding and Recovering)",
+    35: "Thay đổi các thông số hóa lý của đối tượng (Parameter Changes)",
+    36: "Sử dụng chuyển pha (Phase Transitions)",
+    37: "Sử dụng sự nở nhiệt (Thermal Expansion)",
+    38: "Sử dụng các chất oxy hóa mạnh (Strong Oxidants or Boosted Interactions)",
+    39: "Thay đổi độ trơ (Inert Atmosphere)",
+    40: "Sử dụng các vật liệu hợp thành (Composite Structures)"
+}
+
+# Define the UI components
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.h3("Matrix 39"),
+            ui.input_select(
+                "col_select",
+                "Tốt lên:",
+                list(parameter_mapping.keys()),
+                width="100%"
+            ),
+            ui.input_select(
+                "row_select",
+                "Xấu đi:",
+                list(parameter_mapping.keys()),
+                width="100%"
+            ),
+            ui.input_action_button("submitbutton", "Submit", class_="btn btn-primary", width="100%"),
+        ),
+        ui.panel_main(
+            ui.h3("__________NGUYÊN TẮC SÁNG TẠO__________ "),
+            ui.output_table("selected_table", class_="table table-sm table-striped"),
+            ui.HTML("&lt;style&gt; .table { font-size: 15px; text-align: left; } &lt;/style&gt;"),
+        ),
+        style="font-size: 15px; padding: 0px;"
+    ),
+    style="font-size: 15px; padding: 0px;"
+)
+
+def server(input: Inputs, output: Outputs, session: Session):
+    @reactive.Calc
+    def read_file():
+        return pd.read_csv(file_path, delimiter=';')
+
+    @reactive.Calc
+    def selected_value_calc():
+        df_matrix = read_file()
+        if df_matrix.empty:
+            return pd.DataFrame({"Error": ["The data file could not be loaded."]})
+        
+        if input.submitbutton() &gt; 0:
+            row_select = input.row_select()
+            col_select = input.col_select()
+            row_idx = parameter_mapping[row_select] - 1  # Adjust for 0-based indexing
+            col_idx = parameter_mapping[col_select] - 1  # Adjust for 0-based indexing
+            value = df_matrix.iloc[row_idx, col_idx]
+            selected_values = [int(val) for val in str(value).split(',')]
+            result = pd.DataFrame({
+                "Principles": selected_values,
+                " ": [creative_principles[val] for val in selected_values]
+            })
+            return result
+        return pd.DataFrame(columns=["Principles", " "])
+
+    @output
+    @render.table
+    def selected_table():
+        return selected_value_calc()
+
+app = App(app_ui, server)
 </code></pre>
+</section>
 <section id="thông-số-kỹ-thuật" class="level2">
 <h2 class="anchored" data-anchor-id="thông-số-kỹ-thuật">39 Thông số kỹ thuật</h2>
 <section id="trọng-lượng-của-vật-thể-di-chuyển" class="level3">
@@ -506,7 +616,6 @@ def selected_table():
 </ul>
 
 
-</section>
 </section>
 </section>
 
