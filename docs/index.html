@@ -309,7 +309,7 @@ app_ui = ui.page_fluid(
             ui.input_action_button("submitbutton", "Submit", class_="btn btn-primary", width="100%"),
         ),
         ui.panel_main(
-            ui.h3("__________NGUYÊN TẮC SÁNG TẠO__________ "),
+            ui.h3(" "),
             ui.output_table("selected_table", class_="table table-sm table-striped"),
             ui.HTML("&lt;style&gt; .table { font-size: 15px; text-align: left; } &lt;/style&gt;"),
         ),
@@ -337,11 +337,11 @@ def server(input: Inputs, output: Outputs, session: Session):
             value = df_matrix.iloc[row_idx, col_idx]
             selected_values = [int(val) for val in str(value).split(',')]
             result = pd.DataFrame({
-                "Principles": selected_values,
-                " ": [creative_principles[val] for val in selected_values]
+                " ": selected_values,
+                "Các Nguyên Tắc Sáng Tạo": [creative_principles[val] for val in selected_values]
             })
             return result
-        return pd.DataFrame(columns=["Principles", " "])
+        return pd.DataFrame(columns=[" ", "Các Nguyên Tắc Sáng Tạo"])
 
     @output
     @render.table
