@@ -1,12 +1,6 @@
 ---
 title: Shinylive in Quarto example
-format:
-  html: 
-    grid:
-      sidebar-width: 300px
-      body-width: 900px
-      margin-width: 300px
-      gutter-width: 1.5rem
+format: html 
 filters:
   - shinylive
 css: styles.css
