@@ -79,6 +79,7 @@ parameter_mapping = {
 
 # Define creative principles mapping
 creative_principles = {
+    0: "Lựa chọn tham số khác",
     1: "Nguyên tắc phân nhỏ (Segmentation)",
     2: "Nguyên tắc “tách khỏi” (Taking out)",
     3: "Nguyên tắc phẩm chất cục bộ (Local quality)",
